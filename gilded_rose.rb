@@ -5,15 +5,9 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      case item.name
-      when 'Aged Brie'
-       AgedBrie.new.update(item)
-      when 'Sulfuras, Hand of Ragnaros'
-        # nothing
-      when 'Backstage passes to a TAFKAL80ETC concert'
-        Backstage.new.update(item)
-      when 'Conjured Mana Cake'
-        Conjured.new.update(item)
+      item_type = ITEM_TYPES[item.name]
+      if item_type
+        item_type.new.update(item)
       else
         DefaultItem.new.update(item)
       end
@@ -94,7 +88,12 @@ class Conjured
   end
 end
 
-
+ITEM_TYPES = {
+  "Aged Brie" => AgedBrie,
+  "Sulfuras, Hand of Ragnaros" => Sulfuras,
+  "Backstage passes to a TAFKAL80ETC concert" => Backstage,
+  "Conjured Mana Cake" => Conjured,
+  }.freeze
 
 class Item
   attr_accessor :name, :sell_in, :quality
