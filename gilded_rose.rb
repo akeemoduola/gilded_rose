@@ -93,7 +93,7 @@ ITEM_TYPES = {
   "Sulfuras, Hand of Ragnaros" => Sulfuras,
   "Backstage passes to a TAFKAL80ETC concert" => Backstage,
   "Conjured Mana Cake" => Conjured,
-  }.freeze
+  }
 
 class Item
   attr_accessor :name, :sell_in, :quality
